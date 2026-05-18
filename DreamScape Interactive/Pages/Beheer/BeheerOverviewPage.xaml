@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+  x:Class="DreamScape_Interactive.Pages.BeheerOverviewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="using:DreamScape_Interactive.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+  <Grid Background="#111827">
+
+      <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+     <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <Grid Background="#1F2937">
+
+            <StackPanel Margin="20">
+
+                <StackPanel Margin="0,0,0,40">
+        <TextBlock Text="🎮 DreamScape"
+          FontSize="24"
+            FontWeight="Bold"
+         Foreground="White"/>
+    <TextBlock Text="Admin Panel"
+         FontSize="12"
+        Foreground="#9CA3AF"
+    Margin="0,5,0,0"/>
+      </StackPanel>
+
+           <Button Content="📊 Dashboard"
+              Margin="0,5"
+     Padding="15,12"
+     Background="#10B981"
+                Foreground="White"
+      CornerRadius="8"
+          FontWeight="SemiBold"
+ BorderThickness="0"
+     Click="BeheerOverviewButton_Click">
+    <Button.Resources>
+        <ResourceDictionary>
+       <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#059669"/>
+            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#047857"/>
+            </ResourceDictionary>
+       </Button.Resources>
+         </Button>
+
+   <Button Content="👥 Gebruikers"
+      Margin="0,5"
+       Padding="15,12"
+       Background="#374151"
+ Foreground="White"
+    CornerRadius="8"
+          FontWeight="SemiBold"
+         BorderThickness="0"
+    Click="UserButton_Click">
+        <Button.Resources>
+           <ResourceDictionary>
+          <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#4B5563"/>
+           <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#6B7280"/>
+    </ResourceDictionary>
+            </Button.Resources>
+    </Button>
+
+          <Button Content="📦 Items"
+     Margin="0,5"
+            Padding="15,12"
+  Background="#374151"
+         Foreground="White"
+      CornerRadius="8"
+       FontWeight="SemiBold"
+       BorderThickness="0"
+             Click="ItemsButton_Click">
+      <Button.Resources>
+          <ResourceDictionary>
+           <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#4B5563"/>
+       <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#6B7280"/>
+   </ResourceDictionary>
+</Button.Resources>
+    </Button>
+
+    <Button Content="🤝 Trades"
+   Margin="0,5"
+              Padding="15,12"
+               Background="#374151"
+         Foreground="White"
+            CornerRadius="8"
+          FontWeight="SemiBold"
+      BorderThickness="0"
+           Click="TradesButton_Click">
+  <Button.Resources>
+      <ResourceDictionary>
+          <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#4B5563"/>
+   <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#6B7280"/>
+       </ResourceDictionary>
+               </Button.Resources>
+    </Button>
+
+        <Button Content="⚙️ Settings"
+    Margin="0,5"
+     Padding="15,12"
+       Background="#374151"
+ Foreground="White"
+  CornerRadius="8"
+    FontWeight="SemiBold"
+  BorderThickness="0"
+       Click="SettingsButton_Click">
+     <Button.Resources>
+    <ResourceDictionary>
+       <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#4B5563"/>
+       <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#6B7280"/>
+       </ResourceDictionary>
+  </Button.Resources>
+        </Button>
+
+     <Button x:Name="Logout"
+    Content="🚪 Uitloggen"
+       Margin="0,60,0,0"
+  Padding="15,12"
+     Background="#EF4444"
+        Foreground="White"
+   CornerRadius="8"
+    FontWeight="SemiBold"
+          BorderThickness="0"
+               Click="Logout_Click">
+        <Button.Resources>
+             <ResourceDictionary>
+      <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#DC2626"/>
+              <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#B91C1C"/>
+</ResourceDictionary>
+   </Button.Resources>
+         </Button>
+
+ </StackPanel>
+
+</Grid>
+
+        <!-- Main Content -->
+        <Grid Grid.Column="1">
+
+ <Grid.RowDefinitions>
+      <RowDefinition Height="80"/>
+       <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+   <!-- Topbar -->
+       <Grid Background="#1F2937" Padding="30,0">
+         <TextBlock Text="Admin Dashboard"
+            FontSize="28"
+         FontWeight="Bold"
+          Foreground="White"
+   VerticalAlignment="Center"/>
+ </Grid>
+
+        <!-- Dashboard Content -->
+      <ScrollViewer Grid.Row="1" Margin="30,20,30,30">
+   <StackPanel Spacing="20">
+
+    <!-- Stats Cards Row 1 -->
+       <Grid>
+             <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+   <ColumnDefinition/>
+   <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+             <!-- Total Users Card -->
+       <Border Background="#1F2937"
+              CornerRadius="12"
+  Padding="25"
+       Margin="0,0,10,0"
+              BorderBrush="#374151"
+      BorderThickness="2">
+        <StackPanel>
+   <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+             <TextBlock Text="👥" FontSize="24"/>
+       <TextBlock Text="Total Users"
+FontSize="16"
+       Foreground="#9CA3AF"/>
+      </StackPanel>
+        <TextBlock x:Name="TotalUsersText"
+       Text="0"
+   FontSize="48"
+              FontWeight="Bold"
+        Foreground="White"/>
+ <TextBlock Text="Registered accounts"
+      Foreground="#6B7280"
+                 FontSize="12"
+       Margin="0,5,0,0"/>
+   </StackPanel>
+      </Border>
+
+        <!-- Total Players Card -->
+      <Border Background="#1F2937"
+              CornerRadius="12"
+               Padding="25"
+           Margin="5,0"
+     BorderBrush="#374151"
+      BorderThickness="2"
+    Grid.Column="1">
+  <StackPanel>
+                   <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+        <TextBlock Text="🎮" FontSize="24"/>
+  <TextBlock Text="Active Players"
+       FontSize="16"
+        Foreground="#9CA3AF"/>
+                </StackPanel>
+       <TextBlock x:Name="TotalPlayersText"
+     Text="0"
+   FontSize="48"
+   FontWeight="Bold"
+       Foreground="#10B981"/>
+          <TextBlock Text="Player accounts"
+     Foreground="#6B7280"
+      FontSize="12"
+         Margin="0,5,0,0"/>
+   </StackPanel>
+        </Border>
+
+        <!-- Total Items Card -->
+     <Border Background="#1F2937"
+ CornerRadius="12"
+      Padding="25"
+         Margin="10,0,0,0"
+            BorderBrush="#374151"
+   BorderThickness="2"
+   Grid.Column="2">
+   <StackPanel>
+     <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+        <TextBlock Text="📦" FontSize="24"/>
+        <TextBlock Text="Total Items"
+       FontSize="16"
+           Foreground="#9CA3AF"/>
+     </StackPanel>
+        <TextBlock x:Name="TotalItemsText"
+         Text="0"
+         FontSize="48"
+    FontWeight="Bold"
+  Foreground="#60A5FA"/>
+  <TextBlock Text="In database"
+              Foreground="#6B7280"
+     FontSize="12"
+        Margin="0,5,0,0"/>
+         </StackPanel>
+       </Border>
+      </Grid>
+
+          <!-- Stats Cards Row 2 -->
+      <Grid>
+<Grid.ColumnDefinitions>
+ <ColumnDefinition/>
+    <ColumnDefinition/>
+        <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+            <!-- Total Trades Card -->
+           <Border Background="#1F2937"
+              CornerRadius="12"
+            Padding="25"
+    Margin="0,0,10,0"
+         BorderBrush="#374151"
+      BorderThickness="2">
+         <StackPanel>
+ <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+        <TextBlock Text="🤝" FontSize="24"/>
+      <TextBlock Text="Completed Trades"
+        FontSize="16"
+            Foreground="#9CA3AF"/>
+             </StackPanel>
+  <TextBlock x:Name="TotalTradesText"
+ Text="0"
+     FontSize="48"
+       FontWeight="Bold"
+              Foreground="#FBBF24"/>
+           <TextBlock Text="All time trades"
+         Foreground="#6B7280"
+   FontSize="12"
+          Margin="0,5,0,0"/>
+           </StackPanel>
+    </Border>
+
+   <!-- Pending Trades Card -->
+      <Border Background="#1F2937"
+        CornerRadius="12"
+          Padding="25"
+     Margin="5,0"
+  BorderBrush="#374151"
+            BorderThickness="2"
+      Grid.Column="1">
+   <StackPanel>
+   <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+             <TextBlock Text="⏳" FontSize="24"/>
+      <TextBlock Text="Pending Requests"
+      FontSize="16"
+             Foreground="#9CA3AF"/>
+         </StackPanel>
+         <TextBlock x:Name="PendingTradesText"
+           Text="0"
+          FontSize="48"
+  FontWeight="Bold"
+       Foreground="#F59E0B"/>
+          <TextBlock Text="Awaiting response"
+      Foreground="#6B7280"
+             FontSize="12"
+         Margin="0,5,0,0"/>
+   </StackPanel>
+   </Border>
+
+       <!-- Today's Trades Card -->
+    <Border Background="#1F2937"
+       CornerRadius="12"
+             Padding="25"
+            Margin="10,0,0,0"
+BorderBrush="#374151"
+ BorderThickness="2"
+   Grid.Column="2">
+            <StackPanel>
+          <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+   <TextBlock Text="📈" FontSize="24"/>
+          <TextBlock Text="Today's Activity"
+ FontSize="16"
+       Foreground="#9CA3AF"/>
+              </StackPanel>
+  <TextBlock x:Name="TodayTradesText"
+     Text="0"
+         FontSize="48"
+   FontWeight="Bold"
+             Foreground="#10B981"/>
+                  <TextBlock Text="Trades completed today"
+                  Foreground="#6B7280"
+            FontSize="12"
+          Margin="0,5,0,0"/>
+ </StackPanel>
+          </Border>
+           </Grid>
+
+<!-- Quick Actions -->
+            <Border Background="#1F2937"
+          CornerRadius="12"
+  Padding="25"
+   BorderBrush="#374151"
+      BorderThickness="2">
+         <StackPanel>
+                <TextBlock Text="⚡ Quick Actions"
+                FontSize="20"
+       FontWeight="Bold"
+        Foreground="White"
+            Margin="0,0,0,20"/>
+   
+            <StackPanel Orientation="Horizontal" Spacing="15">
+    <Button Content="👥 Manage Users"
+      Background="#2563EB"
+         Foreground="White"
+          Padding="20,12"
+              CornerRadius="8"
+        FontWeight="SemiBold"
+          Click="UserButton_Click">
+          <Button.Resources>
+       <ResourceDictionary>
+ <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#1D4ED8"/>
+           <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#1E40AF"/>
+ </ResourceDictionary>
+     </Button.Resources>
+               </Button>
+
+        <Button Content="📦 Manage Items"
+          Background="#10B981"
+       Foreground="White"
+   Padding="20,12"
+    CornerRadius="8"
+         FontWeight="SemiBold"
+ Click="ItemsButton_Click">
+    <Button.Resources>
+        <ResourceDictionary>
+   <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#059669"/>
+   <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#047857"/>
+          </ResourceDictionary>
+      </Button.Resources>
+        </Button>
+
+            <Button Content="🤝 View Trades"
+        Background="#FBBF24"
+     Foreground="White"
+       Padding="20,12"
+      CornerRadius="8"
+          FontWeight="SemiBold"
+         Click="TradesButton_Click">
+             <Button.Resources>
+         <ResourceDictionary>
+     <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#F59E0B"/>
+       <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#D97706"/>
+    </ResourceDictionary>
+        </Button.Resources>
+</Button>
+        </StackPanel>
+            </StackPanel>
+</Border>
+
+           </StackPanel>
+     </ScrollViewer>
+
+        </Grid>
+
+    </Grid>
+</Page>

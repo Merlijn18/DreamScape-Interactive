@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="DreamScape_Interactive.Pages.Player.CreateTradeRequestPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#111827">
+
+        <Grid.RowDefinitions>
+        <RowDefinition Height="70"/>
+         <RowDefinition Height="*"/>
+  </Grid.RowDefinitions>
+
+        <!-- TOPBAR -->
+        <Grid Background="#1F2937">
+   <Grid.ColumnDefinitions>
+       <ColumnDefinition Width="Auto"/>
+    <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+            <!-- Back Button -->
+     <Button Content="? Back"
+    Background="#374151"
+          Foreground="White"
+            Margin="20,0,0,0"
+     Padding="15,8"
+     VerticalAlignment="Center"
+          FontSize="14"
+     FontWeight="SemiBold"
+    CornerRadius="8"
+        Click="BackButton_Click">
+         <Button.Resources>
+  <ResourceDictionary>
+          <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#4B5563"/>
+             <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#6B7280"/>
+     </ResourceDictionary>
+       </Button.Resources>
+            </Button>
+
+      <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="20,0">
+                <TextBlock Text="Create Trade Request"
+       FontSize="24"
+ FontWeight="Bold"
+Foreground="White"/>
+              <TextBlock x:Name="TargetPlayerText"
+      Text="Trading with: ..."
+        FontSize="13"
+     Foreground="#9CA3AF"/>
+       </StackPanel>
+ </Grid>
+
+        <!-- TRADE FORM -->
+        <ScrollViewer Grid.Row="1" Margin="20">
+      <StackPanel MaxWidth="800" HorizontalAlignment="Center" Spacing="20">
+
+    <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+  <ColumnDefinition Width="40"/>
+<ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+
+      <!-- YOUR OFFER -->
+           <Border Background="#1F2937"
+   CornerRadius="12"
+        BorderThickness="2"
+BorderBrush="#374151"
+    Padding="25">
+     <StackPanel Spacing="15">
+         <TextBlock Text="You Offer"
+                  FontSize="20"
+             FontWeight="Bold"
+     Foreground="White"
+                 HorizontalAlignment="Center"/>
+
+       <Rectangle Height="1" Fill="#374151"/>
+
+     <!-- Select Your Item -->
+        <StackPanel Spacing="10">
+      <TextBlock Text="Select Item"
+FontSize="14"
+           FontWeight="SemiBold"
+   Foreground="#D1D5DB"/>
+   <ComboBox x:Name="YourItemComboBox"
+        HorizontalAlignment="Stretch"
+         Height="44"
+  Background="#111827"
+    Foreground="White"
+  BorderBrush="#374151"
+     BorderThickness="2"
+            CornerRadius="8"
+            PlaceholderText="Choose an item"
+     SelectionChanged="YourItemComboBox_SelectionChanged">
+       <ComboBox.ItemTemplate>
+      <DataTemplate>
+       <StackPanel Orientation="Horizontal" Spacing="10">
+     <TextBlock Text="?" FontSize="18"/>
+        <TextBlock Text="{Binding Item.Name}" Foreground="White"/>
+            <StackPanel Orientation="Horizontal">
+     <TextBlock Text="(Qty: " Foreground="#9CA3AF"/>
+        <TextBlock Text="{Binding Quantity}" Foreground="#9CA3AF"/>
+<TextBlock Text=")" Foreground="#9CA3AF"/>
+     </StackPanel>
+    </StackPanel>
+        </DataTemplate>
+    </ComboBox.ItemTemplate>
+        </ComboBox>
+         </StackPanel>
+
+   <!-- Quantity -->
+         <StackPanel Spacing="10">
+          <TextBlock Text="Quantity"
+          FontSize="14"
+FontWeight="SemiBold"
+         Foreground="#D1D5DB"/>
+  <NumberBox x:Name="YourQuantityNumberBox"
+           Minimum="1"
+Value="1"
+   SpinButtonPlacementMode="Inline"
+             Height="44"
+      Background="#111827"
+    Foreground="White"
+   BorderBrush="#374151"
+                  BorderThickness="2"
+           CornerRadius="8"/>
+        </StackPanel>
+
+  <!-- Preview -->
+         <Border x:Name="YourItemPreview"
+              Visibility="Collapsed"
+                    Background="#111827"
+    CornerRadius="8"
+  Padding="15"
+ Margin="0,10,0,0">
+    <StackPanel Spacing="8">
+             <TextBlock x:Name="YourItemNameText"
+      FontSize="16"
+        FontWeight="Bold"
+    Foreground="White"/>
+                <TextBlock x:Name="YourItemRarityText"
+               Foreground="#FBBF24"
+         FontSize="12"/>
+         </StackPanel>
+            </Border>
+
+             </StackPanel>
+         </Border>
+
+             <!-- ARROW -->
+              <TextBlock Grid.Column="1"
+          Text="?"
+           FontSize="32"
+       Foreground="#10B981"
+      HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+
+   <!-- THEY GIVE -->
+      <Border Grid.Column="2"
+      Background="#1F2937"
+  CornerRadius="12"
+      BorderThickness="2"
+     BorderBrush="#374151"
+          Padding="25">
+         <StackPanel Spacing="15">
+    <TextBlock Text="They Give"
+    FontSize="20"
+             FontWeight="Bold"
+             Foreground="White"
+      HorizontalAlignment="Center"/>
+
+           <Rectangle Height="1" Fill="#374151"/>
+
+           <!-- Select Their Item -->
+         <StackPanel Spacing="10">
+            <TextBlock Text="Select Item"
+         FontSize="14"
+ FontWeight="SemiBold"
+                     Foreground="#D1D5DB"/>
+     <ComboBox x:Name="TheirItemComboBox"
+                    HorizontalAlignment="Stretch"
+       Height="44"
+        Background="#111827"
+           Foreground="White"
+       BorderBrush="#374151"
+      BorderThickness="2"
+      CornerRadius="8"
+         PlaceholderText="Choose an item"
+               SelectionChanged="TheirItemComboBox_SelectionChanged">
+  <ComboBox.ItemTemplate>
+     <DataTemplate>
+        <StackPanel Orientation="Horizontal" Spacing="10">
+   <TextBlock Text="?" FontSize="18"/>
+              <TextBlock Text="{Binding Item.Name}" Foreground="White"/>
+          <StackPanel Orientation="Horizontal">
+          <TextBlock Text="(Qty: " Foreground="#9CA3AF"/>
+       <TextBlock Text="{Binding Quantity}" Foreground="#9CA3AF"/>
+      <TextBlock Text=")" Foreground="#9CA3AF"/>
+      </StackPanel>
+      </StackPanel>
+    </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
+        </StackPanel>
+
+      <!-- Quantity -->
+             <StackPanel Spacing="10">
+        <TextBlock Text="Quantity"
+        FontSize="14"
+     FontWeight="SemiBold"
+           Foreground="#D1D5DB"/>
+   <NumberBox x:Name="TheirQuantityNumberBox"
+     Minimum="1"
+      Value="1"
+           SpinButtonPlacementMode="Inline"
+    Height="44"
+Background="#111827"
+     Foreground="White"
+         BorderBrush="#374151"
+              BorderThickness="2"
+         CornerRadius="8"/>
+ </StackPanel>
+
+        <!-- Preview -->
+   <Border x:Name="TheirItemPreview"
+    Visibility="Collapsed"
+  Background="#111827"
+            CornerRadius="8"
+       Padding="15"
+      Margin="0,10,0,0">
+ <StackPanel Spacing="8">
+         <TextBlock x:Name="TheirItemNameText"
+     FontSize="16"
+            FontWeight="Bold"
+      Foreground="White"/>
+       <TextBlock x:Name="TheirItemRarityText"
+        Foreground="#FBBF24"
+        FontSize="12"/>
+               </StackPanel>
+     </Border>
+
+     </StackPanel>
+         </Border>
+
+      </Grid>
+
+        <!-- Trade Info -->
+                <Border Background="#1F2937"
+                   CornerRadius="12"
+          BorderThickness="2"
+    BorderBrush="#10B981"
+   Padding="20">
+    <StackPanel Spacing="10">
+          <TextBlock Text="?? Trade Information"
+         FontSize="16"
+          FontWeight="Bold"
+            Foreground="White"/>
+            <TextBlock Text="� Both players will receive 50 XP upon completing this trade"
+        Foreground="#9CA3AF"
+       FontSize="13"
+     TextWrapping="Wrap"/>
+    <TextBlock Text="� The other player must accept your trade request"
+       Foreground="#9CA3AF"
+            FontSize="13"
+       TextWrapping="Wrap"/>
+<TextBlock Text="� Make sure both items are fair for a successful trade!"
+        Foreground="#9CA3AF"
+       FontSize="13"
+  TextWrapping="Wrap"/>
+       </StackPanel>
+    </Border>
+
+    <!-- Send Trade Request Button -->
+           <Button Content="?? Send Trade Request"
+      Background="#10B981"
+       Foreground="White"
+      HorizontalAlignment="Stretch"
+           Height="50"
+   FontSize="16"
+ FontWeight="Bold"
+             CornerRadius="8"
+       Click="SendTradeRequestButton_Click">
+        <Button.Resources>
+            <ResourceDictionary>
+      <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#059669"/>
+    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#047857"/>
+         </ResourceDictionary>
+        </Button.Resources>
+        </Button>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

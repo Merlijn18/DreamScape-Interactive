@@ -1,0 +1,168 @@
+<Page
+    x:Class="DreamScape_Interactive.Pages.Player.PlayerInventoryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Background="#111827">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- TOPBAR -->
+        <Grid Background="#1F2937">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Back Button -->
+            <Button Content="← Back"
+                    Background="#374151"
+                    Foreground="White"
+                    Margin="20,0,0,0"
+                    Padding="15,8"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    CornerRadius="8"
+                    Click="BackButton_Click">
+                <Button.Resources>
+                    <ResourceDictionary>
+                        <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#4B5563"/>
+                        <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#6B7280"/>
+                    </ResourceDictionary>
+                </Button.Resources>
+            </Button>
+
+            <TextBlock Text="Inventory"
+                       Grid.Column="1"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       Margin="20,0"/>
+        </Grid>
+
+        <!-- SEARCH -->
+        <TextBox x:Name="ItemSearchBox"
+                 Grid.Row="1"
+                 Margin="20"
+                 Height="40"
+                 PlaceholderText="🔍 Zoek item..."
+                 Background="#1F2937"
+                 Foreground="White"
+                 BorderBrush="#374151"
+                 TextChanged="ItemSearchBox_TextChanged"/>
+
+        <!-- INVENTORY GRID -->
+        <ListView Grid.Row="2"
+                  Background="Transparent"
+                  SelectionMode="None"
+                  Margin="20"
+                  x:Name="ItemListView">
+
+            <!-- GRID LAYOUT -->
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                   MaximumRowsOrColumns="6"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Border Width="150"
+                            Height="160"
+                            Background="#1F2937"
+                            CornerRadius="10"
+                            BorderThickness="2"
+                            BorderBrush="#374151"
+                            Margin="8"
+                            Padding="6">
+
+                        <ToolTipService.ToolTip>
+
+                            <StackPanel MaxWidth="200">
+
+                                <TextBlock Text="{Binding Item.Name}"
+                                           FontWeight="Bold"/>
+
+                                <TextBlock Text="{Binding Item.Description}"
+                                           TextWrapping="Wrap"/>
+
+                                <TextBlock Text="{Binding Item.strength}"/>
+                                <TextBlock Text="{Binding Item.Speed}"/>
+                                <TextBlock Text="{Binding Item.Durability}"/>
+
+                                <TextBlock Text="{Binding Item.Magic_Effect}"
+                                           Foreground="#60A5FA"/>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Quantity: " Foreground="#10B981"/>
+                                    <TextBlock Text="{Binding Quantity}" Foreground="#10B981"/>
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </ToolTipService.ToolTip>
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- ICON -->
+                            <Border Background="#111827"
+                                    CornerRadius="6"
+                                    Margin="4">
+
+                                <TextBlock Text="⚔"
+                                           FontSize="36"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                            </Border>
+
+                            <!-- INFO -->
+                            <StackPanel Grid.Row="1"
+                                        Margin="4">
+
+                                <TextBlock Text="{Binding Item.Name}"
+                                           Foreground="White"
+                                           FontWeight="Bold"
+                                           FontSize="12"
+                                           TextTrimming="CharacterEllipsis"/>
+
+                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                    <TextBlock Text="{Binding Item.Rarity}"
+                                               Foreground="#FBBF24"
+                                               FontSize="11"/>
+                                    <TextBlock Text="x" Foreground="#10B981" FontSize="11" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Quantity}"
+                                               Foreground="#10B981"
+                                               FontSize="11"
+                                               FontWeight="Bold"/>
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+    </Grid>
+</Page>

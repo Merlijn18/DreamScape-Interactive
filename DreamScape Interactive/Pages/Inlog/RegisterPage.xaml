@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+ x:Class="DreamScape_Interactive.Pages.Inlog.RegisterPage"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ mc:Ignorable="d">
+
+ <Grid Background="#111827">
+ <Border Width="600" Padding="30" CornerRadius="12" Background="#1F2937" BorderBrush="#374151" BorderThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+ <StackPanel Spacing="12">
+ <TextBlock Text="Create Account" FontSize="24" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+
+ <TextBlock Text="Username" Foreground="#D1D5DB"/>
+ <TextBox x:Name="UsernameBox" PlaceholderText="Choose a username" Height="44"/>
+
+ <TextBlock Text="Email" Foreground="#D1D5DB"/>
+ <TextBox x:Name="EmailRegisterBox" PlaceholderText="Enter your email" Height="44"/>
+
+ <TextBlock Text="Password" Foreground="#D1D5DB"/>
+ <PasswordBox x:Name="PasswordRegisterBox" PlaceholderText="Choose a password" Height="44"/>
+
+ <TextBlock Text="Starter Item" Foreground="#D1D5DB"/>
+ <ComboBox x:Name="StarterItemCombo" Height="44" />
+
+ <Button Content="Register" Click="RegisterButton_Click" Background="#10B981" Foreground="White" Height="48"/>
+
+ <TextBlock x:Name="RegisterError" Foreground="#EF4444" TextWrapping="Wrap"/>
+ </StackPanel>
+ </Border>
+ </Grid>
+</Page>

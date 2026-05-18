@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "bijzonderHandig (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "bijzonderHandig (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
